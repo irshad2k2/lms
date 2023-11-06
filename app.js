@@ -139,3 +139,73 @@ async function (request, response) {
     response.render("login")
 }
 );
+
+//////////////////////////////////////// login mechaism /////////////////////////////////
+
+app.post(
+    "/login",
+    passport.authenticate("local", {
+      successRedirect: "/",
+      failureRedirect: "/login", 
+      failureFlash: true,
+    })
+  );
+  
+  app.get("/logout", function(req, res) {
+    req.logout(function(err) {
+      if (err) {
+        console.error(err);
+      }
+      res.redirect("/"); 
+    });
+  });
+  
+  
+  
+  app.get('/', async function (request, response) {
+    if (request.user) {
+      if (request.user.role == "educator") {
+        return response.redirect(`/homeEducator`);
+      }
+      return response.redirect(`/home/${request.user.id}`);
+    } else {
+      response.render("index")
+    }
+  });
+  
+  
+  app.get(
+    "/home/:userID",
+    async function (request, response) {
+      const coursesData = await course.findAll();
+      const enrolledCoursesArray = await enrollment.findAll({
+        where: {
+          user_id: request.user.id,
+          status: true, 
+        },
+        include: [{
+          model: course,
+          attributes: ['id', 'course_name', 'description'],
+        }],
+      });
+      response.render("home", {courses: coursesData , enrolledCourses: enrolledCoursesArray})
+    }
+  );
+  
+  app.get(
+    "/homeEducator",
+    async function (request, response) {
+      const coursesData = await course.findAll();
+      const enrolledCoursesArray = await enrollment.findAll({
+        where: {
+          user_id: request.user.id,
+          status: true, 
+        },
+        include: [{
+          model: course,
+          attributes: ['id', 'course_name', 'description'],
+        }],
+      });
+      response.render("homeEducator", {courses: coursesData , enrolledCourses: enrolledCoursesArray})
+    }
+  );
