@@ -386,4 +386,36 @@ app.post(
     }
 );
 
+//////////////////////////////////////// change password //////////////////////////////////////
+
+app.get("/change-password", function (req, res) {
+    res.render("changePassword");
+});
+
+app.post("/change-password", async function (req, res) {
+    const { currentPassword, newPassword, confirmNewPassword } = req.body;
+
+    const isValidPassword = await bcrypt.compare(currentPassword, req.user.password);
+
+    if (!isValidPassword) {
+        req.flash("error", "Incorrect current password.");
+        return res.redirect("/change-password");
+    }
+
+    if (newPassword !== confirmNewPassword) {
+        req.flash("error", "New password and confirm password do not match.");
+        return res.redirect("/change-password");
+    }
+
+    const hashedNewPassword = await bcrypt.hash(newPassword, saltRounds);
+    req.user.password = hashedNewPassword;
+    await req.user.save();
+
+    req.flash("success", "Password changed successfully.");
+    res.redirect("/");
+});
+
+
+
+
 module.exports = app;
