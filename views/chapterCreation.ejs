@@ -3,17 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>chapterCreation</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+
 </head>
 <body>
-    <h2>chapters in <%=course_name %></h2>
-    <ul>
-        <% chapters.forEach(function(chapter) { %>
-            <li><a href="/chapter/<%=chapter.id %>/page"><%= chapter.chapter_name %></a></li>
-        <% }); %>
-    </ul>
+    <%- include ('header.ejs') %>
+    <div class="holder">
+        <h2 class="admin">chapters in <%=course_name %></h2>
+        <ul>
+            <% chapters.forEach(function(chapter) { %>
+                <li class="names"><a href="/chapter/<%=chapter.id %>/page"><%= chapter.chapter_name %></a></li>
+            <% }); %>
+        </ul>
+    
+        <button type="submit" onclick="window.location.href='/<%=courseID %>/addChapter'">Add chapter</button>
+    </div>
 
-    <button type="submit" onclick="window.location.href='/<%=courseID %>/addChapter'">Add chapter</button>
 
 </body>
 </html>

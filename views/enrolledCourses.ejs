@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>enrolledCourses</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+
 </head>
 <body>
+    <%- include ('header.ejs') %>
+
     <h1>Enrolled courses</h1>
     <!DOCTYPE html>
 <html lang="en">
@@ -29,9 +33,6 @@
     <% } else { %>
         <p>You are not enrolled in any courses yet.</p>
     <% } %>
-
-    <!-- Add a link to go back to the homepage or any other relevant page -->
-    <a href="/">Go Back</a>
 </body>
 </html>
 

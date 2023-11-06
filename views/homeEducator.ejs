@@ -3,28 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>homeEducator</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+
 </head>
 <body>
-    <h1>Welcome Educator, <%=firstName %></h1>
-
-    <a href="/logout">Logout</a>
-    <h1>Administrative actions</h1>
-    <h2><a href="/course/create">Create a course</a></h2>
-    <h2><a href="/courses">My course</a></h2>
-    <h2><a href="/change-password">Change password</a></h2>
+    <%- include ('header.ejs') %>
+    <h2 class="welcome">Welcome Educator, <%=firstName %></h2>
+    <h2 class="admin">Administrative actions</h2>
+    <h2><a class="administrative" href="/course/create">Create a course</a></h2>
+    <br>
+    <h2><a class="administrative" href="/courses">My course</a></h2>
+    <br>
+    <h2 ><a class="administrative" href="/change-password">Change password</a></h2>
 
     <hr>
 
-    <h1>Enrolled courses</h1>
+    <h2 class="admin">Enrolled courses</h2>
     <% if (enrolledCourses.length > 0) { %>
         <ul>
             <% enrolledCourses.forEach(course => { %>
-                <li>
+                <li class="names block">
                     <strong>Course Name:</strong> <%= course.course.course_name %><br>
                     <strong> <a href="/courses/<%= course.course.id %>/chapters">View Chapters</a></strong>
                 </li>
-                <br>
             <% }); %>
         </ul>
     <% } else { %>
@@ -33,22 +35,16 @@
 
     <hr>
     
-    <h1>Available Courses</h1>
+    <h2 class="admin">Available Courses</h2>
     <ul>
         <% courses.forEach(function(course) { %>
-            <li>
+            <li class="names block">
                 <strong>Course Name:</strong> <%= course.course_name %> <br>
                 <strong> <a href="/courses/<%= course.id %>/chapters">View Chapters</a></strong>
-                <br>
-                <br>
                 <form action="/<%= course.id %>/enrollment" method="post">
-                    <!-- <input type="" name="status" id="" value="true">
-                    <input type="text" name="progress" id="" value="100"> -->
                     <button type="submit">Enroll</button>
                 </form>
-            </li>
-            <br>
-            <br>
+            </li>        
         <% }); %>
     </ul>
 </body>

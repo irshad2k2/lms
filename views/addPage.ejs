@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>addPages</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+
 </head>
 <body>
+    <%- include ('header.ejs') %>
     <h2>Page Creation Page</h2>    
     <form action="/chapter/<%=chapterID %>/page" method="post">
         <label for="name">Chapter Name:</label>

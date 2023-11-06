@@ -12,17 +12,17 @@ const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const { request } = require("http");
 
+app.use(express.static('public'));
+
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 app.use(session({
     secret: "secret string123456",
     resave: false,
     saveUninitialized: false
 }));
 
-
 app.use(flash());
-app.set("views", path.join(__dirname, "views"));
-app.set("view engine", "ejs");
-app.use(express.static(path.join(__dirname, "public")));
 
 app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
@@ -140,7 +140,7 @@ app.get(
     }
 );
 
-//////////////////////////////////////// login mechaism /////////////////////////////////
+//////////////////////////////////////// login mechanism /////////////////////////////////
 
 app.post(
     "/login",
@@ -179,7 +179,7 @@ app.get(
     async function (request, response) {
         const coursesData = await course.findAll();
         const fName = await user.findOne({
-            where:{
+            where: {
                 id: request.user.id
             }
         })
@@ -193,7 +193,7 @@ app.get(
                 attributes: ['id', 'course_name', 'description'],
             }],
         });
-        response.render("home", { courses: coursesData, enrolledCourses: enrolledCoursesArray,firstName: fName.firstName })
+        response.render("home", { courses: coursesData, enrolledCourses: enrolledCoursesArray, firstName: fName.firstName })
     }
 );
 
@@ -202,7 +202,7 @@ app.get(
     async function (request, response) {
         const coursesData = await course.findAll();
         const fName = await user.findOne({
-            where:{
+            where: {
                 id: request.user.id
             }
         })
@@ -303,8 +303,8 @@ app.get(
                 id: courseID
             }
         })
-        
-        response.render("chapterCreation", { courseID,chapters: chaptersData, course_name:courseData.course_name })
+
+        response.render("chapterCreation", { courseID, chapters: chaptersData, course_name: courseData.course_name })
     }
 );
 
@@ -334,7 +334,7 @@ app.get(
                 course_id: courseID
             }
         });
-        response.render("addChapter", { courseID,chapters: chaptersData })
+        response.render("addChapter", { courseID, chapters: chaptersData })
     }
 )
 
@@ -360,7 +360,7 @@ app.get(
 
         const pagesData = await page.findAll({
             where: {
-                chapter_id:chapterID
+                chapter_id: chapterID
             }
         });
 
@@ -370,7 +370,7 @@ app.get(
             }
         })
 
-        response.render("pageCreation", { chapterID, pages: pagesData,page_name: chaptersData.chapter_name, chapter_name: chaptersData.chapter_name })
+        response.render("pageCreation", { chapterID, pages: pagesData, page_name: chaptersData.chapter_name, chapter_name: chaptersData.chapter_name })
     }
 );
 
@@ -394,9 +394,6 @@ app.get("/course/:courseID/chapter/:chapterID/pages", checkEnrollment,
         }
     }
 );
-
-//////////////////////////// content ///////////////////////////////////////////////////
-
 
 
 //////////////////////////////////////// enrollment //////////////////////////////////////
@@ -432,7 +429,6 @@ app.post(
             } else {
                 response.status(500).send("Failed to mark page as complete.");
             }
-            response.redirect("./")
         } catch (error) {
             console.error(error);
             response.status(500).send("Internal Server Error");

@@ -3,18 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>courseCreation</title>
+    <link rel="stylesheet" href="/css/styles.css"/>
+
 </head>
 <body>
-    <h2>Course Creation Page</h2>
-    <form action="/course" method="post">
-        <label for="course_name">Enter course name </label>
-        <input id="course_name" type="text" name="name">
-        <label for="course_desc">Enter course description </label>
-        <input id="course_desc" type="text" name="description">
+    <%- include ('header.ejs') %>
+    <div class="holder">
+        <h2 class="admin">Create new course</h2>
+        <form action="/course" method="post">
+            <label for="course_name">Enter course name </label>
+            <input id="course_name" type="text" name="name">
+            <label for="course_desc">Enter course description </label>
+            <input id="course_desc" type="text" name="description">
+            <br>
+            <button type="submit">submit</button>
+        </form>
+    </div>
 
-        <button type="submit">submit</button>
-    </form>
+
 
 </body>
 </html>

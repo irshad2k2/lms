@@ -3,22 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>home</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+
 </head>
 <body>
-    <h1>Welcome student, <%=firstName %> </h1>
-    <a href="/logout">Logout</a>
-    <h2><a href="/change-password">Change password</a></h2>
+    <%- include ('header.ejs') %>
+    <h2 class="welcome">Welcome student, <%=firstName %> </h2>
+    <h2 class="admin">Manage profile</h2>
+    <h2><a class="administrative" href="/change-password">Change password</a></h2>
     <hr>
-    <h1>Enrolled courses</h1>
+    <h2 class="admin">Enrolled courses</h2>
     <% if (enrolledCourses.length > 0) { %>
         <ul>
             <% enrolledCourses.forEach(course => { %>
-                <li>
+                <li class="names block">
                     <strong>Course Name:</strong> <%= course.course.course_name %><br>
                     <strong> <a href="/courses/<%= course.course.id %>/chapters">View Chapters</a></strong>
                 </li>
-                <br>
             <% }); %>
         </ul>
     <% } else { %>
@@ -27,20 +29,16 @@
     <hr>
 
     
-    <h1>Available Courses</h1>
+    <h2 class="admin">Available Courses</h2>
     <ul>
         <% courses.forEach(function(course) { %>
-            <li>
+            <li class="names block">
                 <strong>Course Name:</strong> <%= course.course_name %> <br>
                 <strong> <a href="/courses/<%= course.id %>/chapters">View Chapters</a></strong>
-                <br>
-                <br>
                 <form action="/<%= course.id %>/enrollment" method="post">
                     <button type="submit">Enroll</button>
                 </form>
             </li>
-            <br>
-            <br>
         <% }); %>
     </ul>
 </body>

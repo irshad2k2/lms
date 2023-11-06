@@ -3,25 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>pageCreation</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+
 </head>
 <body>
-    <h2>Pages of <%=page_name %></h2>
+    <%- include ('header.ejs') %>
+    <div class="holder">
+        <h2 class="admin">Pages of <%=page_name %></h2>
+        <ul>
+            <% pages.forEach(function(page) { %>
+                <li class="names"><%= page.page_name %></li>
+            <% }); %>
+        </ul>
+        <h3>Create new page</h3>    
+        <form action="/chapter/<%=chapterID %>/page" method="post">
+            <label for="name">Page Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="description">Content:</label>
+            <textarea id="description" name="content" required></textarea><br>
+            <button type="submit">Create Page</button>
+        </form>
+    </div>
 
-    <ul>
-        <% pages.forEach(function(page) { %>
-            <li><a href="/<%=chapterID %>/pages"><%= page.page_name %></a></li>
-        <% }); %>
-    </ul>
 
-
-    <h2>Page Creation Page</h2>    
-    <form action="/chapter/<%=chapterID %>/page" method="post">
-        <label for="name">Chapter Name:</label>
-        <input type="text" id="name" name="name" required><br>
-        <label for="description">Description:</label>
-        <textarea id="description" name="content" required></textarea><br>
-        <button type="submit">Create Page</button>
-    </form>
 </body>
 </html>
