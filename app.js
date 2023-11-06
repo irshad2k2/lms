@@ -178,6 +178,11 @@ app.get(
     "/home/:userID",
     async function (request, response) {
         const coursesData = await course.findAll();
+        const fName = await user.findOne({
+            where:{
+                id: request.user.id
+            }
+        })
         const enrolledCoursesArray = await enrollment.findAll({
             where: {
                 user_id: request.user.id,
@@ -188,7 +193,7 @@ app.get(
                 attributes: ['id', 'course_name', 'description'],
             }],
         });
-        response.render("home", { courses: coursesData, enrolledCourses: enrolledCoursesArray })
+        response.render("home", { courses: coursesData, enrolledCourses: enrolledCoursesArray,firstName: fName.firstName })
     }
 );
 
@@ -196,6 +201,11 @@ app.get(
     "/homeEducator",
     async function (request, response) {
         const coursesData = await course.findAll();
+        const fName = await user.findOne({
+            where:{
+                id: request.user.id
+            }
+        })
         const enrolledCoursesArray = await enrollment.findAll({
             where: {
                 user_id: request.user.id,
@@ -206,7 +216,7 @@ app.get(
                 attributes: ['id', 'course_name', 'description'],
             }],
         });
-        response.render("homeEducator", { courses: coursesData, enrolledCourses: enrolledCoursesArray })
+        response.render("homeEducator", { courses: coursesData, enrolledCourses: enrolledCoursesArray, firstName: fName.firstName })
     }
 );
 
@@ -258,6 +268,7 @@ app.get("/courses", async function (request, response) {
 app.post(
     "/course/:courseID/chapter",
     async function (request, response) {
+        const courseID = request.params.courseID;
         const { name, description } = request.body;
         try {
             const chapter_post = await chapter.create({
@@ -267,7 +278,7 @@ app.post(
             });
             const chapterID = await chapter_post.id;
             if (request.accepts("html")) {
-                return response.redirect(`chapter/${chapterID}/page`);
+                return response.redirect(`/course/${courseID}/chapter`)
             } else {
                 return response.json(chapter_post);
             }
@@ -281,8 +292,19 @@ app.post(
 app.get(
     "/course/:courseID/chapter",
     async function (request, response) {
-        const courseID = request.params.courseID
-        response.render("chapterCreation", { courseID })
+        const courseID = request.params.courseID;
+        const chaptersData = await chapter.findAll({
+            where: {
+                course_id: courseID
+            }
+        });
+        const courseData = await course.findOne({
+            where: {
+                id: courseID
+            }
+        })
+        
+        response.render("chapterCreation", { courseID,chapters: chaptersData, course_name:courseData.course_name })
     }
 );
 
@@ -303,31 +325,59 @@ app.get("/courses/:courseID/chapters", async function (request, response) {
     }
 });
 
+app.get(
+    "/:courseID/addChapter",
+    async function (request, response) {
+        const courseID = request.params.courseID
+        const chaptersData = await chapter.findAll({
+            where: {
+                course_id: courseID
+            }
+        });
+        response.render("addChapter", { courseID,chapters: chaptersData })
+    }
+)
+
 
 //////////////////////////////////////////// page ////////////////////////////////////////////
 app.post(
     "/chapter/:chapterID/page",
     async function (request, response) {
+        const chapterID = request.params.chapterID
         const page_post = await page.create({
             page_name: request.body.name,
             content: request.body.content,
             chapter_id: request.params.chapterID,
         });
-        response.redirect("/homeEducator");
+        response.redirect(`/chapter/${chapterID}/page`);
     }
 );
 
 app.get(
-    "/course/:courseID/chapter/:chapterID/page",
+    "/chapter/:chapterID/page",
     async function (request, response) {
         const chapterID = request.params.chapterID;
-        response.render("pageCreation", { chapterID })
+
+        const pagesData = await page.findAll({
+            where: {
+                chapter_id:chapterID
+            }
+        });
+
+        const chaptersData = await chapter.findOne({
+            where: {
+                id: chapterID
+            }
+        })
+
+        response.render("pageCreation", { chapterID, pages: pagesData,page_name: chaptersData.chapter_name, chapter_name: chaptersData.chapter_name })
     }
 );
 
-//my pages
 
+//my pages 
 
+//student 
 app.get("/course/:courseID/chapter/:chapterID/pages", checkEnrollment,
     async function (request, response) {
         try {
@@ -344,6 +394,10 @@ app.get("/course/:courseID/chapter/:chapterID/pages", checkEnrollment,
         }
     }
 );
+
+//////////////////////////// content ///////////////////////////////////////////////////
+
+
 
 //////////////////////////////////////// enrollment //////////////////////////////////////
 

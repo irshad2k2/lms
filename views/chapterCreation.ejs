@@ -6,13 +6,15 @@
     <title>Document</title>
 </head>
 <body>
-    <h2>chapter Creation Page</h2>    
-    <form action="/course/<%=courseID %>/chapter" method="post">
-        <label for="name">Chapter Name:</label>
-        <input type="text" id="name" name="name" required><br>
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" required></textarea><br>
-        <button type="submit">Create Chapter</button>
-    </form>
+    <h2>chapters in <%=course_name %></h2>
+    <ul>
+        <% chapters.forEach(function(chapter) { %>
+            <li><a href="/chapter/<%=chapter.id %>/page"><%= chapter.chapter_name %></a></li>
+        <% }); %>
+    </ul>
+
+    <button type="submit" onclick="window.location.href='/<%=courseID %>/addChapter'">Add chapter</button>
+
 </body>
 </html>
+
