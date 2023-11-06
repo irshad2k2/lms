@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="/logout">Logout</a>
+    <h1>Enrolled courses</h1>
+    <% if (enrolledCourses.length > 0) { %>
+        <ul>
+            <% enrolledCourses.forEach(course => { %>
+                <li>
+                    <strong>Course Name:</strong> <%= course.course.course_name %><br>
+                    <strong> <a href="/courses/<%= course.course.id %>/chapters">View Chapters</a></strong>
+                </li>
+                <br>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>You are not enrolled in any courses yet.</p>
+    <% } %>
+    <hr>
+
+    
+    <h1>Available Courses</h1>
+    <ul>
+        <% courses.forEach(function(course) { %>
+            <li>
+                <strong>Course Name:</strong> <%= course.course_name %> <br>
+                <strong> <a href="/courses/<%= course.id %>/chapters">View Chapters</a></strong>
+                <br>
+                <br>
+                <form action="/<%= course.id %>/enrollment" method="post">
+                    <button type="submit">Enroll</button>
+                </form>
+            </li>
+            <br>
+            <br>
+        <% }); %>
+    </ul>
+</body>
+</html>
+

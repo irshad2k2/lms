@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Enrolled courses</h1>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enrolled Courses</title>
+</head>
+<body>
+    <h2>Enrolled Courses</h2>
+    <% if (enrolledCourses.length > 0) { %>
+        <ul>
+            <% enrolledCourses.forEach(course => { %>
+                <li>
+                    <strong>Course ID:</strong> <%= course.course.id %><br>
+                    <strong>Course Name:</strong> <a href=""><%= course.course.course_name %></a><br>
+                    <strong>Description:</strong>  <a href=""><%= course.course.description %></a>
+                </li>
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>You are not enrolled in any courses yet.</p>
+    <% } %>
+
+    <!-- Add a link to go back to the homepage or any other relevant page -->
+    <a href="/">Go Back</a>
+</body>
+</html>
+
+</body>
+</html>
+
