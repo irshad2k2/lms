@@ -361,3 +361,29 @@ app.post(
         response.redirect("/")
     }
 );
+
+////////////////////////////// mark page as complete //////////////////////////////////////
+
+app.post(
+    "/pages/:pageID/markAsComplete",
+    async function (request, response) {
+        try {
+            const markAsComplete = await page_progress.create({
+                page_id: request.params.pageID,
+                user_id: request.user.id,
+                status: true,
+            });
+            if (markAsComplete) {
+                response.status(200).send("Page marked as complete.");
+            } else {
+                response.status(500).send("Failed to mark page as complete.");
+            }
+            response.redirect("./")
+        } catch (error) {
+            console.error(error);
+            response.status(500).send("Internal Server Error");
+        }
+    }
+);
+
+module.exports = app;
