@@ -344,3 +344,20 @@ app.get("/course/:courseID/chapter/:chapterID/pages", checkEnrollment,
         }
     }
 );
+
+//////////////////////////////////////// enrollment //////////////////////////////////////
+
+app.post(
+    "/:courseID/enrollment",
+    async function (request, response) {
+        const courseID = request.params.courseID;
+        const Enrollment = await enrollment.create({
+            status: true,
+            progress: 0,
+            user_id: request.user.id,
+            course_id: courseID,
+        });
+
+        response.redirect("/")
+    }
+);
