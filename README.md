@@ -38,13 +38,24 @@ This Learning Management System (LMS) is a web application designed for both edu
 - **Bcrypt:** Library for securely hashing passwords.
 - **EJS:** Template engine for rendering dynamic content in HTML.
 
+siggup page:
 ![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(56).png)
-![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(57).png)
-![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(58).png)
-![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(59).png)
-![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%202023-11-07%20011033.png)
-![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%202023-11-07%20011124.png)
-![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%202023-11-07%20011155.png)
-![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%202023-11-07%20100627.png)
+
+educators home page:
+![homeEducator](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(57).png)
+
+students home page
+![homeStudent](https://github.com/irshad2k2/lms/blob/main/Screenshot%202023-11-07%20011155.png)
+
+chapters:
+![chapters](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(58).png)
+
+pages
+![pages](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(59).png)
+
+
+Demo video :
+
+[Watch Loom Recording](https://www.loom.com/share/7b09641c31f247f48c9057588fa2fff1?sid=21cac794-3834-4e09-81f8-56d18f87acf2)
 
 
