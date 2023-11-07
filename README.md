@@ -37,3 +37,14 @@ This Learning Management System (LMS) is a web application designed for both edu
 - **Passport.js:** Authentication middleware for Node.js.
 - **Bcrypt:** Library for securely hashing passwords.
 - **EJS:** Template engine for rendering dynamic content in HTML.
+
+![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(56).png)
+![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(57).png)
+![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(58).png)
+![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(59).png)
+![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%202023-11-07%20011033.png)
+![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%202023-11-07%20011124.png)
+![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%202023-11-07%20011155.png)
+![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%202023-11-07%20100627.png)
+
+
