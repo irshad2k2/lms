@@ -164,4 +164,8 @@ header {
   .container {
     padding: 10px;
   }
+
+  .holder {
+    width: 100%;
+  }
 }
