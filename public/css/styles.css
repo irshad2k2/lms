@@ -136,6 +136,7 @@ header {
   border: 1px dotted black;
   border-radius: 4px;
   margin: 20px;
+  padding: 5px;
 }
 
 .home {
@@ -148,7 +149,11 @@ header {
 
 .block {
   display: inline-block;
-  width: 300px;
+  width: 28%;
+}
+.courses {
+  display: inline-block;
+  width: 50%;
 }
 
 .administrative {

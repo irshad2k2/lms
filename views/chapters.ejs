@@ -12,7 +12,7 @@
       <h1>chapters in <%=course_name %></h1>
       <ul>
         <% chapters.forEach(function(chapter) { %>
-        <li class="names">
+        <li class="names courses">
           <a
             href="/course/<%=chapter.course_id %>/chapter/<%=chapter.id %>/pages"
             ><%= chapter.chapter_name %></a
