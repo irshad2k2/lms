@@ -1,35 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>pages</title>
     <link rel="stylesheet" href="/css/styles.css" />
-
-</head>
-<body>
+  </head>
+  <body>
     <%- include ('header.ejs') %>
     <div class="holder">
-        <h1>pages</h1>
-        <ul>
-            <% pages.forEach(function(page) { %>
-                <li><strong>Page Title: <%= page.page_name %></strong>
-                    <br>
-                    <br>
-                    <strong>Content:</strong>
-                    <br>
-                    <%= page.content %>
-                    <br>
-                    <br>
-                    <form action="/pages/<%=page.id %>/markAsComplete" method="post">
-                        <button type="submit">Mark as complete</button>
-                    </form>
-                </li>
-                <hr>
-            <% }); %>
-        </ul>
+      <h1>pages</h1>
+      <ul>
+        <% pages.forEach(function(page) { %>
+        <li>
+          <strong>Page Title: <%= page.page_name %></strong>
+          <br />
+          <br />
+          <strong>Content:</strong>
+          <br />
+          <%= page.content %>
+          <br />
+          <br />
+          <form action="/pages/<%=page.id %>/markAsComplete" method="post">
+            <button type="submit">Mark as complete</button>
+          </form>
+        </li>
+        <hr />
+        <% }); %>
+      </ul>
     </div>
-
-
-</body>
+  </body>
 </html>

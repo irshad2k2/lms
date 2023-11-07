@@ -1,23 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>chapters</title>
     <link rel="stylesheet" href="/css/styles.css" />
-
-</head>
-<body>
+  </head>
+  <body>
     <%- include ('header.ejs') %>
     <div class="holder">
-        <h1>chapters (student)</h1>
-        <ul>
-            <% chapters.forEach(function(chapter) { %>
-                <li class="names"><a href="/course/<%=chapter.course_id %>/chapter/<%=chapter.id %>/pages"><%= chapter.chapter_name %></a></li>
-            <% }); %>
-        </ul>
+      <h1>chapters in <%=course_name %></h1>
+      <ul>
+        <% chapters.forEach(function(chapter) { %>
+        <li class="names">
+          <a
+            href="/course/<%=chapter.course_id %>/chapter/<%=chapter.id %>/pages"
+            ><%= chapter.chapter_name %></a
+          >
+        </li>
+        <% }); %>
+      </ul>
     </div>
-
-
-</body>
+  </body>
 </html>
