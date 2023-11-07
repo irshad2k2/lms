@@ -1,36 +1,39 @@
-Learning Management System
+# Learning Management System
+
 This Learning Management System (LMS) is a web application designed for both educators and students. Educators can create courses, add chapters, and pages, while students can enroll in courses, view chapter lists, mark pages as complete, and change their passwords. The application is built using Node.js, Express.js, Sequelize ORM, and Passport for authentication.
 
-Features
-User Roles:
+## Features
 
-Educator: Educators can create courses, add chapters, and pages.
-Student: Students can enroll in courses, view chapter lists, and mark pages as complete.
-Authentication and Authorization:
+- **User Roles:**
+  - **Educator:** Educators can create courses, add chapters, and pages.
+  - **Student:** Students can enroll in courses, view chapter lists, and mark pages as complete.
 
-Users can sign up, log in, and log out.
-Passwords are securely hashed using bcrypt.
-Educators can create courses only after authentication.
-Students can enroll in courses only after authentication.
-Course Management:
+- **Authentication and Authorization:**
+  - Users can sign up, log in, and log out.
+  - Passwords are securely hashed using bcrypt.
+  - Educators can create courses only after authentication.
+  - Students can enroll in courses only after authentication.
 
-Educators can create new courses with names and descriptions.
-Chapters can be added to courses, each with its own name and description.
-Pages can be added to chapters, containing content for students to read.
-Enrollment:
+- **Course Management:**
+  - Educators can create new courses with names and descriptions.
+  - Chapters can be added to courses, each with its own name and description.
+  - Pages can be added to chapters, containing content for students to read.
 
-Students can enroll in available courses.
-Educators can view the list of enrolled students for their courses.
-Progress Tracking:
+- **Enrollment:**
+  - Students can enroll in available courses.
+  - Educators can view the list of enrolled students for their courses.
 
-Students can mark pages as complete, allowing them to track their progress.
-Password Management:
+- **Progress Tracking:**
+  - Students can mark pages as complete, allowing them to track their progress.
 
-Users (both educators and students) can change their passwords securely.
-Technologies Used
-Node.js: JavaScript runtime for server-side development.
-Express.js: Web application framework for Node.js.
-Sequelize: ORM (Object-Relational Mapping) for database interactions.
-Passport.js: Authentication middleware for Node.js.
-Bcrypt: Library for securely hashing passwords.
-EJS: Template engine for rendering dynamic content in HTML.
+- **Password Management:**
+  - Users (both educators and students) can change their passwords securely.
+
+## Technologies Used
+
+- **Node.js:** JavaScript runtime for server-side development.
+- **Express.js:** Web application framework for Node.js.
+- **Sequelize:** ORM (Object-Relational Mapping) for database interactions.
+- **Passport.js:** Authentication middleware for Node.js.
+- **Bcrypt:** Library for securely hashing passwords.
+- **EJS:** Template engine for rendering dynamic content in HTML.
