@@ -56,7 +56,7 @@ pages
 
 Demo video :
 
-<iframe src="https://www.loom.com/embed/7b09641c31f247f48c9057588fa2fff1?sid=97d15f5a-f54b-4de9-8bc1-8dde773a78c1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe>
+<iframe width="560" height="315" src="https://www.loom.com/embed/7b09641c31f247f48c9057588fa2fff1?sid=97d15f5a-f54b-4de9-8bc1-8dde773a78c1" frameborder="0" allowfullscreen></iframe>
 
 
 [Watch Loom Recording](https://www.loom.com/share/7b09641c31f247f48c9057588fa2fff1?sid=21cac794-3834-4e09-81f8-56d18f87acf2)
