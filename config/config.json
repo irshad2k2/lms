@@ -14,7 +14,7 @@
     "dialect": "postgres"
   },
   "production": {
-    "use_env_variable": "DATABASE_URL",
+    "use_env_variable": "postgres://lms_db_bezt_user:eZhgMk8hxhe2bVD7EO8ys9LncvDAua7Y@dpg-cl4s10vrfvgs73dm9v3g-a/lms_db_bezt",
     "dialect": "postgres"
   }
 }
