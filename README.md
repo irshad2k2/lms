@@ -55,6 +55,7 @@ pages
 
 
 Demo video :
+[Download Loom Recording](https://github.com/irshad2k2/lms/blob/main/Learning%20Management%20System%20Overview%20%F0%9F%91%A8_%F0%9F%8F%AB.mp4)
 
 [Watch Loom Recording](https://www.loom.com/share/7b09641c31f247f48c9057588fa2fff1?sid=21cac794-3834-4e09-81f8-56d18f87acf2)
 
