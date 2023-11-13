@@ -228,7 +228,6 @@ app.get("/home/:userID", async function (request, response) {
           status: true,
         },
       });
-
       const progressPercentage = (completedPages / totalPages) * 100;
       return {
         courseId: enrollment.course.id,
