@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <%- include('header.ejs') %>
+    <div class="holder">
+        <h1>Reports</h1>
+        <ul>
+            <% enrollmentData.forEach(function (course) { %>
+                <li>
+                    <strong>Course: <%= course.courseName %></strong>
+                    <br />
+                    <strong>Enrollment Count: <%= course.enrollmentCount %></strong>
+                </li>
+                <hr />
+            <% }); %>
+        </ul>
+        <a href="/">Back to Home</a>
+    </div>
+</body>
+</html>

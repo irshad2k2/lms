@@ -222,6 +222,7 @@ app.get("/homeEducator", async function (request, response) {
     courses: coursesData,
     enrolledCourses: enrolledCoursesArray,
     firstName: fName.firstName,
+    reportLink: "/reports",
   });
 });
 
@@ -410,6 +411,39 @@ app.get("/chapter/:pageID", async function (request, response) {
   }
 });
 
+// page navigation
+
+app.get("/chapter/:pageID/prev", async function (request, response) {
+  try {
+    const pageID = request.params.pageID;
+
+    const pageData = await page.findOne({
+      where: {
+        id: pageID,
+      },
+    });
+
+    const chapterID = pageData.chapter_id;
+
+    const prevPage = await page.findOne({
+      where: {
+        chapter_id: chapterID,
+        id: { [Op.lt]: pageID },
+      },
+      order: [["id", "DESC"]],
+    });
+
+    if (prevPage) {
+      response.redirect(`/chapter/${prevPage.id}`);
+    } else {
+      response.redirect(`/chapter/${pageID}`);
+    }
+  } catch (error) {
+    console.log(error);
+    response.status(500).send("Internal Server Error");
+  }
+});
+
 app.get("/chapter/:pageID/next", async function (request, response) {
   try {
     const pageID = request.params.pageID;
@@ -427,8 +461,14 @@ app.get("/chapter/:pageID/next", async function (request, response) {
         chapter_id: chapterID,
         id: { [Op.gt]: pageID },
       },
+      order: [["id", "ASC"]],
     });
-    response.redirect(`/chapter/${nextPage.id}`);
+
+    if (nextPage) {
+      response.redirect(`/chapter/${nextPage.id}`);
+    } else {
+      response.redirect(`/chapter/${pageID}`);
+    }
   } catch (error) {
     console.log(error);
     response.status(500).send("Internal Server Error");
@@ -499,6 +539,39 @@ app.post("/change-password", async function (req, res) {
 
   req.flash("success", "Password changed successfully.");
   res.redirect("/");
+});
+
+////////////////////////////////// reports page ///////////////////////////////////////
+
+app.get("/report", requireEducator, async function (request, response) {
+  try {
+    const educatorCourses = await course.findAll({
+      where: {
+        instructor_id: request.user.id,
+      },
+    });
+
+    const enrollmentData = await Promise.all(
+      educatorCourses.map(async (course) => {
+        const enrollmentCount = await enrollment.count({
+          where: {
+            course_id: course.id,
+            status: true,
+          },
+        });
+        return {
+          courseId: course.id,
+          courseName: course.course_name,
+          enrollmentCount,
+        };
+      })
+    );
+
+    response.render("report", { enrollmentData });
+  } catch (error) {
+    console.log(error);
+    response.status(500).send("Internal Server Error");
+  }
 });
 
 module.exports = app;

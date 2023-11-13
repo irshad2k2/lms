@@ -25,6 +25,12 @@
       <br />
       <button
         type="submit"
+        onclick="window.location.href='/chapter/<%= page.id %>/prev'"
+      >
+        << previous page
+      </button>
+      <button
+        type="submit"
         onclick="window.location.href='/chapter/<%= page.id %>/next'"
       >
         Next page >>
