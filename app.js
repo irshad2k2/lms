@@ -192,10 +192,56 @@ app.get("/home/:userID", async function (request, response) {
       },
     ],
   });
+
+  // course progress
+
+  const courseProgressArray = await Promise.all(
+    enrolledCoursesArray.map(async (enrollment) => {
+      const chapterIds = (
+        await chapter.findAll({
+          where: { course_id: enrollment.course.id },
+        })
+      ).map((chapter) => chapter.id);
+
+      const totalPages = await page.count({
+        where: {
+          chapter_id: {
+            [Op.in]: chapterIds,
+          },
+        },
+      });
+
+      const completedPages = await page_progress.count({
+        where: {
+          user_id: request.user.id,
+          page_id: {
+            [Op.in]: (
+              await page.findAll({
+                where: {
+                  chapter_id: {
+                    [Op.in]: chapterIds,
+                  },
+                },
+              })
+            ).map((page) => page.id),
+          },
+          status: true,
+        },
+      });
+
+      const progressPercentage = (completedPages / totalPages) * 100;
+      return {
+        courseId: enrollment.course.id,
+        progress: progressPercentage.toFixed(2),
+      };
+    })
+  );
+
   response.render("home", {
     courses: coursesData,
     enrolledCourses: enrolledCoursesArray,
     firstName: fName.firstName,
+    courseProgress: courseProgressArray,
   });
 });
 
@@ -218,11 +264,57 @@ app.get("/homeEducator", async function (request, response) {
       },
     ],
   });
+
+  // course progress
+
+  const courseProgressArray = await Promise.all(
+    enrolledCoursesArray.map(async (enrollment) => {
+      const chapterIds = (
+        await chapter.findAll({
+          where: { course_id: enrollment.course.id },
+        })
+      ).map((chapter) => chapter.id);
+
+      const totalPages = await page.count({
+        where: {
+          chapter_id: {
+            [Op.in]: chapterIds,
+          },
+        },
+      });
+
+      const completedPages = await page_progress.count({
+        where: {
+          user_id: request.user.id,
+          page_id: {
+            [Op.in]: (
+              await page.findAll({
+                where: {
+                  chapter_id: {
+                    [Op.in]: chapterIds,
+                  },
+                },
+              })
+            ).map((page) => page.id),
+          },
+          status: true,
+        },
+      });
+
+      const progressPercentage = (completedPages / totalPages) * 100;
+      return {
+        courseId: enrollment.course.id,
+        progress: progressPercentage.toFixed(2),
+      };
+    })
+  );
+
   response.render("homeEducator", {
     courses: coursesData,
     enrolledCourses: enrolledCoursesArray,
     firstName: fName.firstName,
     reportLink: "/reports",
+    courseProgress: courseProgressArray,
   });
 });
 
@@ -404,7 +496,23 @@ app.get("/chapter/:pageID", async function (request, response) {
         id: request.params.pageID,
       },
     });
-    response.render("page", { page: pageData });
+
+    const completionStatus = await page_progress.findOne({
+      where: {
+        user_id: request.user.id,
+        page_id: request.params.pageID,
+        status: true,
+      },
+    });
+
+    let status = false;
+    if (completionStatus) {
+      status = true;
+    } else {
+      status = false;
+    }
+
+    response.render("page", { page: pageData, status });
   } catch (error) {
     console.log(error);
     response.status(500).send("Internal Server Error");
@@ -493,13 +601,15 @@ app.post("/:courseID/enrollment", async function (request, response) {
 
 app.post("/pages/:pageID/markAsComplete", async function (request, response) {
   try {
+    const pageID = request.params.pageID;
     const markAsComplete = await page_progress.create({
       page_id: request.params.pageID,
       user_id: request.user.id,
       status: true,
     });
     if (markAsComplete) {
-      response.status(200).send("Page marked as complete.");
+      response.redirect(`/chapter/${pageID}`);
+      // response.status(200).send("Page marked as complete.");
     } else {
       response.status(500).send("Failed to mark page as complete.");
     }

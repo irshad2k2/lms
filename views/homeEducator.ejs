@@ -26,21 +26,22 @@
 
     <h2 class="admin">Enrolled courses</h2>
     <% if (enrolledCourses.length > 0) { %>
-    <ul>
-      <% enrolledCourses.forEach(course => { %>
-      <li class="names block">
-        <strong>Course Name:</strong> <%= course.course.course_name %><br />
-        <strong>
-          <a href="/courses/<%= course.course.id %>/chapters"
-            >View Chapters</a
-          ></strong
-        >
-      </li>
-      <% }); %>
-    </ul>
-    <% } else { %>
-    <p>You are not enrolled in any courses yet.</p>
-    <% } %>
+      <ul>
+        <% enrolledCourses.forEach((enrollment, index) => { %>
+        <li class="names block">
+          <strong>Course Name:</strong> <%= enrollment.course.course_name %><br />
+          <strong>
+            <a href="/courses/<%= enrollment.course.id %>/chapters"
+              >View Chapters</a
+            > </strong
+          ><br />
+          <strong>Progress:</strong> <%= courseProgress[index].progress %>%
+        </li>
+        <% }); %>
+      </ul>
+      <% } else { %>
+      <p>You are not enrolled in any courses yet.</p>
+      <% } %>
 
     <hr />
 

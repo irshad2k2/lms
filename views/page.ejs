@@ -19,9 +19,16 @@
       <%= page.content %>
       <br />
       <br />
+      <% if (status) { %>
+      <form>
+        <button type="submit">Completed</button>
+      </form>
+      <% } else { %>
       <form action="/pages/<%=page.id %>/markAsComplete" method="post">
         <button type="submit">Mark as complete</button>
       </form>
+      <% } %>
+
       <br />
       <button
         type="submit"
