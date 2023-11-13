@@ -18,6 +18,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
 const { request } = require("http");
+const { Op } = require("sequelize");
 
 app.use(express.static("public"));
 
@@ -394,6 +395,45 @@ app.get(
     }
   }
 );
+
+app.get("/chapter/:pageID", async function (request, response) {
+  try {
+    const pageData = await page.findOne({
+      where: {
+        id: request.params.pageID,
+      },
+    });
+    response.render("page", { page: pageData });
+  } catch (error) {
+    console.log(error);
+    response.status(500).send("Internal Server Error");
+  }
+});
+
+app.get("/chapter/:pageID/next", async function (request, response) {
+  try {
+    const pageID = request.params.pageID;
+
+    const pageData = await page.findOne({
+      where: {
+        id: pageID,
+      },
+    });
+
+    const chapterID = pageData.chapter_id;
+
+    const nextPage = await page.findOne({
+      where: {
+        chapter_id: chapterID,
+        id: { [Op.gt]: pageID },
+      },
+    });
+    response.redirect(`/chapter/${nextPage.id}`);
+  } catch (error) {
+    console.log(error);
+    response.status(500).send("Internal Server Error");
+  }
+});
 
 //////////////////////////////////////// enrollment //////////////////////////////////////
 

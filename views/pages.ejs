@@ -10,20 +10,14 @@
     <%- include ('header.ejs') %>
     <div class="holder">
       <h1>pages</h1>
+      <br />
       <ul>
         <% pages.forEach(function(page) { %>
-        <li>
-          <strong>Page Title: <%= page.page_name %></strong>
-          <br />
-          <br />
-          <strong>Content:</strong>
-          <br />
-          <%= page.content %>
-          <br />
-          <br />
-          <form action="/pages/<%=page.id %>/markAsComplete" method="post">
-            <button type="submit">Mark as complete</button>
-          </form>
+        <li class="names courses">
+          <strong
+            >Page Title: <%= page.page_name %> <br />
+            <a href="/chapter/<%= page.id %>">view</a></strong
+          >
         </li>
         <hr />
         <% }); %>

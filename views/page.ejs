@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>page</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <%- include ('header.ejs') %>
+    <div class="holder">
+      <h1>page</h1>
+      <br />
+      <strong>Page Title: <%= page.page_name %> <br /></strong>
+      <br />
+      <br />
+      <strong>Content:</strong>
+      <br />
+      <%= page.content %>
+      <br />
+      <br />
+      <form action="/pages/<%=page.id %>/markAsComplete" method="post">
+        <button type="submit">Mark as complete</button>
+      </form>
+      <br />
+      <button
+        type="submit"
+        onclick="window.location.href='/chapter/<%= page.id %>/next'"
+      >
+        Next page >>
+      </button>
+    </div>
+  </body>
+</html>
