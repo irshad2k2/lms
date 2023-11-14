@@ -65,7 +65,7 @@ Pages:
 
 
 Demo video :
-![DemoVideo](https://www.loom.com/embed/7b09641c31f247f48c9057588fa2fff1?sid=97d15f5a-f54b-4de9-8bc1-8dde773a78c1)
+![DemoVideo](https://github.com/irshad2k2/lms/blob/main/Demo_video_LMS.mp4)
 
 "https://www.loom.com/embed/7b09641c31f247f48c9057588fa2fff1?sid=97d15f5a-f54b-4de9-8bc1-8dde773a78c1"
 
