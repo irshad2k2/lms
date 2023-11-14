@@ -1,6 +1,6 @@
 # Learning Management System
 
-This Learning Management System (LMS) is a web application designed for both educators and students. Educators can create courses, add chapters, and pages, while students can enroll in courses, view chapter lists, mark pages as complete, and change their passwords. The application is built using Node.js, Express.js, Sequelize ORM, and Passport for authentication.
+This Learning Management System (LMS) is a web application designed for both educators and students. Educators can create courses, add chapters, and pages, while students can enroll in courses, view chapter lists, mark pages as complete, and change their passwords.The user can can also search a course. The application is built using Node.js, Express.js, Sequelize, Postgresql, and Passport for authentication.
 
 ## Features
 
@@ -38,23 +38,34 @@ This Learning Management System (LMS) is a web application designed for both edu
 - **Bcrypt:** Library for securely hashing passwords.
 - **EJS:** Template engine for rendering dynamic content in HTML.
 
-siggup page:
-![signup](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(56).png)
+Signup page:
 
-educators home page:
-![homeEducator](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(57).png)
+![signup](https://github.com/irshad2k2/lms/blob/main/signup_lms.png)
 
-students home page
-![homeStudent](https://github.com/irshad2k2/lms/blob/main/Screenshot%202023-11-07%20011155.png)
 
-chapters:
-![chapters](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(58).png)
+Educator's home page:
 
-pages
-![pages](https://github.com/irshad2k2/lms/blob/main/Screenshot%20(59).png)
+![homeEducator](https://github.com/irshad2k2/lms/blob/main/homeEducator_lms.png)
+
+
+Student's home page:
+
+![homeStudent](https://github.com/irshad2k2/lms/blob/main/home_lms.png)
+
+
+Chapters:
+
+![chapters](https://github.com/irshad2k2/lms/blob/main/chapters_lms.png)
+
+
+Pages:
+
+![pages](https://github.com/irshad2k2/lms/blob/main/page_lms.png)
+
 
 
 Demo video :
+![DemoVideo](https://www.loom.com/embed/7b09641c31f247f48c9057588fa2fff1?sid=97d15f5a-f54b-4de9-8bc1-8dde773a78c1)
 
 "https://www.loom.com/embed/7b09641c31f247f48c9057588fa2fff1?sid=97d15f5a-f54b-4de9-8bc1-8dde773a78c1"
 
