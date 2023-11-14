@@ -65,12 +65,8 @@ Pages:
 
 
 Demo video :
+https://www.loom.com/share/7b95ca6639ea449080d7aa78f05d3cb8?sid=79d99b4b-0591-4524-8403-38405efdb32b
 
-[![DemoVideo]](https://www.loom.com/share/7b95ca6639ea449080d7aa78f05d3cb8?sid=e71f18d3-434e-4bcf-82fe-3ea9cfb32856)
-
-
-
-[Watch Loom Recording](https://www.loom.com/share/7b95ca6639ea449080d7aa78f05d3cb8?sid=e71f18d3-434e-4bcf-82fe-3ea9cfb32856)
 
 
 [Live-app](https://lms-6t3q.onrender.com)
