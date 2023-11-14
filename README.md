@@ -65,12 +65,12 @@ Pages:
 
 
 Demo video :
-![DemoVideo](https://github.com/irshad2k2/lms/blob/main/Demo_video_LMS.mp4)
 
-"https://www.loom.com/embed/7b09641c31f247f48c9057588fa2fff1?sid=97d15f5a-f54b-4de9-8bc1-8dde773a78c1"
+[![DemoVideo]](https://www.loom.com/share/7b95ca6639ea449080d7aa78f05d3cb8?sid=e71f18d3-434e-4bcf-82fe-3ea9cfb32856)
 
 
-[Watch Loom Recording](https://www.loom.com/share/7b09641c31f247f48c9057588fa2fff1?sid=21cac794-3834-4e09-81f8-56d18f87acf2)
+
+[Watch Loom Recording](https://www.loom.com/share/7b95ca6639ea449080d7aa78f05d3cb8?sid=e71f18d3-434e-4bcf-82fe-3ea9cfb32856)
 
 
 [Live-app](https://lms-6t3q.onrender.com)
