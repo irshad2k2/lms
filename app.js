@@ -683,4 +683,39 @@ app.get("/report", requireEducator, async function (request, response) {
   }
 });
 
+// search functionality
+app.get("/search", async function (request, response) {
+  try {
+    const searchTerm = request.query.q;
+
+    if (!searchTerm) {
+      return response.render("search", {
+        message: "Please enter a search term.",
+      });
+    }
+
+    const coursesData = await course.findAll({
+      where: {
+        [Op.or]: [
+          {
+            course_name: {
+              [Op.iLike]: `%${searchTerm}%`,
+            },
+          },
+          {
+            description: {
+              [Op.iLike]: `%${searchTerm}%`,
+            },
+          },
+        ],
+      },
+    });
+
+    response.render("search", { courses: coursesData, searchTerm });
+  } catch (error) {
+    console.log(error);
+    response.status(500).send("Internal Server Error");
+  }
+});
+
 module.exports = app;

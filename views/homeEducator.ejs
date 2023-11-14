@@ -21,27 +21,40 @@
     <h2>
       <a class="administrative" href="/report">View report</a>
     </h2>
+    <hr />
+    <!-------------- search form ----------------->
+    <form action="/search" method="get" class="search-form">
+      <label for="searchTerm">Search Courses:</label>
+      <input
+        type="text"
+        id="searchTerm"
+        name="q"
+        placeholder="Enter course name or description"
+        required
+      />
+      <button type="submit">Search</button>
+    </form>
 
     <hr />
 
     <h2 class="admin">Enrolled courses</h2>
     <% if (enrolledCourses.length > 0) { %>
-      <ul>
-        <% enrolledCourses.forEach((enrollment, index) => { %>
-        <li class="names block">
-          <strong>Course Name:</strong> <%= enrollment.course.course_name %><br />
-          <strong>
-            <a href="/courses/<%= enrollment.course.id %>/chapters"
-              >View Chapters</a
-            > </strong
-          ><br />
-          <strong>Progress:</strong> <%= courseProgress[index].progress %>%
-        </li>
-        <% }); %>
-      </ul>
-      <% } else { %>
-      <p>You are not enrolled in any courses yet.</p>
-      <% } %>
+    <ul>
+      <% enrolledCourses.forEach((enrollment, index) => { %>
+      <li class="names block">
+        <strong>Course Name:</strong> <%= enrollment.course.course_name %><br />
+        <strong>
+          <a href="/courses/<%= enrollment.course.id %>/chapters"
+            >View Chapters</a
+          > </strong
+        ><br />
+        <strong>Progress:</strong> <%= courseProgress[index].progress %>%
+      </li>
+      <% }); %>
+    </ul>
+    <% } else { %>
+    <p>You are not enrolled in any courses yet.</p>
+    <% } %>
 
     <hr />
 

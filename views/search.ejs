@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Course Search</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <%- include ('header.ejs') %>
+
+    <h1>Course Search Results for "<%= searchTerm %>"</h1>
+
+    <% if (courses && courses.length > 0) { %>
+    <ul>
+      <% courses.forEach(course => { %>
+      <li class="names block">
+        <strong>Course name: </strong><%= course.course_name %>
+        <br />
+        <strong>
+          <a href="/courses/<%= course.id %>/chapters">View Chapters</a></strong
+        >
+        <form action="/<%= course.id %>/enrollment" method="post">
+          <button type="submit">Enroll</button>
+        </form>
+      </li>
+      <% }); %>
+    </ul>
+    <% } else { %>
+    <p>No courses found.</p>
+    <% } %>
+  </body>
+</html>
